@@ -195,11 +195,11 @@ Isso fará com que o cookie seja alterado, e a variável **trackUserCookie** ass
 
 ```jsx
 var trackUserCookie = {
-		userId: "asdfg",
-	  __proto__: {
-				XSSPage: "PAYLOAD"
-		},
-		qwerty: "zxcvb"
+    userId: "asdfg",
+    __proto__: {
+        XSSPage: "PAYLOAD"
+	},
+    qwerty: "zxcvb"
 }
 ```
 
