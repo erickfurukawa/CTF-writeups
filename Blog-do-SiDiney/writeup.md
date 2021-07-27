@@ -198,7 +198,7 @@ var trackUserCookie = {
     userId: "asdfg",
     __proto__: {
         XSSPage: "PAYLOAD"
-	},
+    },
     qwerty: "zxcvb"
 }
 ```
