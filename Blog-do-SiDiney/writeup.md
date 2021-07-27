@@ -20,10 +20,10 @@ A primeira coisa que encontramos ao acessar o site é uma página com um menu de
 
 ```jsx
 Urls válidas:
-[http://127.0.0.1:1256/?page=home](http://127.0.0.1:1256/?page=home)
-[http://127.0.0.1:1256/?page=contact](http://127.0.0.1:1256/?page=contact)
-[http://127.0.0.1:1256/?page=company](http://127.0.0.1:1256/?page=company)
-[http://127.0.0.1:1256/?page=benefits](http://127.0.0.1:1256/?page=benefits)
+http://127.0.0.1:1256/?page=home
+http://127.0.0.1:1256/?page=contact
+http://127.0.0.1:1256/?page=company
+http://127.0.0.1:1256/?page=benefits
 ```
 
 Ao navegar pelas páginas, estamos procurando principalmente por elementos HTML que podem ser utilizados para executar um ataque XSS como inputs e forms, mas o site não aparenta ter nenhum desses elementos. Vamos analisar o código fonte das páginas para ver se conseguimos obter mais informações.
@@ -97,7 +97,7 @@ function setCookies(params){
 Para confirmar isso, vamos acessar o site através do link
 
 ```jsx
-[http://127.0.0.1:1256/?page=home&userId=valorArbitrario](http://127.0.0.1:1256/?page=home&userId=valorArbitrario)
+http://127.0.0.1:1256/?page=home&userId=valorArbitrario
 ```
 
 Acessando o **Storage Inspector** do Firefox podemos ver que o valor do cookie realmente foi alterado.
