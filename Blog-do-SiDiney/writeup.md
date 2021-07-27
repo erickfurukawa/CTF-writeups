@@ -31,7 +31,7 @@ Ao navegar pelas páginas, estamos procurando principalmente por elementos HTML 
 ```html
 <html>
 <head>
-  <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
     <h1 style="text-align: center;">Blog do SiDiney!!!</h1>
@@ -73,7 +73,7 @@ function getPageContent(page){ // "page" é obtido através do query parameter
     try{
         document.getElementById("content").innerHTML = pages[page].toString();
     }catch(err){
-      handleError(err);
+        handleError(err);
     }
 }
 ```
@@ -89,7 +89,7 @@ function setCookies(params){
             document.cookie = "userId=Guest";
         }
     }catch(err){
-      handleError(err);
+        handleError(err);
     }
 }
 ```
@@ -114,8 +114,8 @@ function loadFooter(){
     try{
         document.getElementById("footer").innerHTML = "SIDI";
     }catch(err){
-			// handleError sempre é executado pois o elemento "footer" não existe no HTML
-      handleError(err);
+        // handleError sempre é executado pois o elemento "footer" não existe no HTML
+        handleError(err);
     } 
 }
 ```
@@ -145,7 +145,7 @@ function collectErrorLogs(error){
 }
 ```
 
-Na função **append()** é onde se encontra a vulnerabilidade que nos permitirá fazer o **prototype pollution**. De forma resumida, essa função pega as propriedades e valores de **obj2**, e os atribui em **obj1**. Como **obj2** é nosso objeto **trackUserCookie** com propriedades arbitrárias, essa função permite sobrescrever qualquer propriedade de **obj1**. Isso também nos permite acessar a propriedade **__proto__** de **obj1**, levando a **prototype pollution**.
+Na função **append()** é onde se encontra a vulnerabilidade que nos permitirá fazer o **prototype pollution**. De forma resumida, essa função pega as propriedades e valores de **obj2**, e os atribui em **obj1**. Como **obj2** é nosso objeto **trackUserCookie** com propriedades arbitrárias, essa função permite sobrescrever qualquer propriedade de **obj1**. Isso também nos permite acessar a propriedade **\_\_proto\_\_** de **obj1**, levando a **prototype pollution**.
 
 ```jsx
 function append(obj1, obj2) {
@@ -159,14 +159,14 @@ function append(obj1, obj2) {
         }
         return obj1;
     }catch(err){
-      handleError(err);
+        handleError(err);
     }
 };
 ```
 
 ## Prototype pollution
 
-JavaScript é uma linguagem de programação **prototype based**. Objetos em JavaScript possuem por padrão todas as propriedades do protótipo **object**. Este protótipo possui funcionalidades básicas como **toString** e **constructor**. **Prototype pollution** se refere a uma vulnerabilidade que permite a alteração das propriedades do protótipo **object**, que se propagam por todos os outros objetos JavaScript. Essas propriedades podem ser modificadas acessando **__proto__** de qualquer objeto JavaScript. Por exemplo:
+JavaScript é uma linguagem de programação **prototype based**. Objetos em JavaScript possuem por padrão todas as propriedades do protótipo **object**. Este protótipo possui funcionalidades básicas como **toString** e **constructor**. **Prototype pollution** se refere a uma vulnerabilidade que permite a alteração das propriedades do protótipo **object**, que se propagam por todos os outros objetos JavaScript. Essas propriedades podem ser modificadas acessando **\_\_proto\_\_** de qualquer objeto JavaScript. Por exemplo:
 
 ```jsx
 var pessoa = {"nome": "Erick", "idade": 23, "amane": "kanata"};
@@ -203,7 +203,7 @@ var trackUserCookie = {
 }
 ```
 
-A este ponto o **prototype pollution** ainda não ocorreu. **__proto__** é apenas um atributo normal de **trackUserCookie**. Apenas após executar a função **append()** que o prototype vai ser poluído. O seguinte código será executado em **append()** que irá poluir o prototype de **object** com nosso payload malicioso. A partir daí, todo objeto terá uma propriedade **XSSPage** com o valor **"PAYLOAD"**.
+A este ponto o **prototype pollution** ainda não ocorreu. **\_\_proto\_\_** é apenas um atributo normal de **trackUserCookie**. Apenas após executar a função **append()** que o prototype vai ser poluído. O seguinte código será executado em **append()** que irá poluir o prototype de **object** com nosso payload malicioso. A partir daí, todo objeto terá uma propriedade **XSSPage** com o valor **"PAYLOAD"**.
 
 ```jsx
 obj1['__proto__']['XSSPage'] = "PAYLOAD";
