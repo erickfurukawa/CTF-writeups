@@ -249,4 +249,4 @@ Para contornar este problema, vamos utilizar a codificação unicode para repres
 
 Sucesso! Ao visitar o site um **alert** é executado, comprovando que conseguimos um XSS no site.
 
-Com isso finalizo o writeup do CTF do blog do SiDiney. Espero que tenham conseguido aprender algo novo com a leitura. Obrigado Rafael Santos pela criação do CTF, e pela licença do Burp pro. (*￣▽￣*)
+Com isso finalizo o writeup do CTF blog do SiDiney. Espero que tenham conseguido aprender algo novo com a leitura. Obrigado Rafael Santos pela criação do CTF, e pela licença do Burp pro. (\*￣▽￣\*)
